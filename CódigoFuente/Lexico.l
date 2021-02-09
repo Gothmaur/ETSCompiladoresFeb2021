@@ -18,7 +18,7 @@ IS	(u|U|l|L)
 "do"|"while"|"for"															{printf("<ciclos>");}
 "char"|"double"|"float"|"int"|"enum"|"void"			{printf("<clasificador de tipo>");}
 "const"|"volatile"															{printf("<calificador de tipos>");}
-"short"|"long"|"signed"|"unsigned"							{printgf("<modificador de tipos>");}
+"short"|"long"|"signed"|"unsigned"							{printf("<modificador de tipos>");}
 "continue"|"goto"																{printf("<Movimiento de seccion>");}
 "default"|"case"|"return"												{printf("Reservadas");}
 "sizeof"																				{printf("<operador>");}
@@ -26,13 +26,15 @@ IS	(u|U|l|L)
 
 {L}({L}|{D})*																		{printf("<Identificador>");}
 
+{D}+{E}{FS}?																		{printf("<Literal entera con exponencial>");}
+{D}*"."{D}*({E}?)({FS})?												{printf("<Literal real con exponencial>");}
+
+
 {D}+{IS}?																				{printf("Decimal entero");}
 L?\"(\\.|[^\\"])*\"															{printf("Literal de cadena");}
 L?'(\\.|[^\\'])+'																{printf("Literal de caracter");}
 
 
-{D}+{E}{FS}?																		{printf("<Literal entera con exponencial>");}
-{D}*"."{D}*({E}?)({FS})?												{printf("<Literal real con exponencial>");}
 
 "<"|">"|"=="|"<="|">="|"!="											{printf("<Comparacion>");}
 "&&"|"||"																				{printf("<Operador Logico>");}
@@ -49,5 +51,10 @@ L?'(\\.|[^\\'])+'																{printf("Literal de caracter");}
 %%
 
 yywrap(){
-  return(1)
+  return(1);
+}
+
+int main()
+{
+	return yylex();
 }
