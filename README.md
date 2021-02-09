@@ -2,4 +2,4 @@ README
 
 Trejo Miranda Mauricio Alejandro.
 
-Con este documento se hará una breve descripción de nuestro proyecto
+Aquí se almacenará el proyecto para compiladores
